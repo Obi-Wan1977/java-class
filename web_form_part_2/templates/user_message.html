@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Caesar Cipher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <section class="centered">
+        <h1>Caesar Cipher</h1>
+        <form method="POST" action="/user_message">
+            <label for="message">Message:</label>
+            <input type="text" name="message" id="message" required><br><br>
+
+            <label for="shift">Shift (1–25):</label>
+            <input type="number" name="shift" id="shift" min="1" max="25" required><br><br>
+
+            <label>
+                <input type="radio" name="action" value="Encrypt" checked> Encrypt
+            </label>
+            <label>
+                <input type="radio" name="action" value="Decrypt"> Decrypt
+            </label><br><br>
+
+            <!-- Submit button disabled -->
+            <button type="submit" disabled>Submit (Disabled)</button>
+
+            <p style="color:red;">{{ error_message }}</p>
+        </form>
+
+        {% if user_message %}
+            <section>
+                <p><strong>Original:</strong> {{ user_message }}</p>
+                <p><strong>Result:</strong> {{ result_message }}</p>
+            </section>
+        {% endif %}
+    </section>
+</body>
+</html>
